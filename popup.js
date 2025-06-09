@@ -1,51 +1,51 @@
-const heightSlider = document.getElementById('heightSlider');
-const heightValue = document.getElementById('heightValue');
+const fileInput = document.getElementById('fileInput');
+const chooseFileButton = document.getElementById('chooseFileButton');
+const fileNameSpan = document.getElementById('fileName');
 
-// Cập nhật giá trị hiển thị chiều cao khi kéo slider
-heightSlider.addEventListener('input', () => {
-  heightValue.textContent = heightSlider.value;
+// Khi bấm nút tùy chỉnh mở hộp chọn file
+chooseFileButton.addEventListener('click', () => {
+  fileInput.click();
 });
 
-// Sự kiện nút Lưu
+// Khi chọn file, hiện tên file và đọc base64
+fileInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    fileNameSpan.textContent = file.name;
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        document.getElementById('base64Input').value = reader.result;
+        setStatus('', '');
+      };
+      reader.readAsDataURL(file);
+    }
+  } else {
+    fileNameSpan.textContent = 'No file chosen';
+  }
+});
+
+// Nút Lưu
 document.getElementById('saveButton').addEventListener('click', () => {
   const base64 = document.getElementById('base64Input').value.trim();
   const progressColor = document.getElementById('progressColor').value;
-  const height = parseInt(heightSlider.value);
 
   if (base64) {
     chrome.storage.local.set({
       scrubberBase64: base64,
       progressColor: progressColor,
-      scrubberHeight: height
     }, () => {
-      setStatus('✅ Đã lưu ảnh, màu và chiều cao!', 'success');
+      setStatus('✅ Image and color saved!', 'success');
     });
   } else {
-    setStatus('⚠️ Vui lòng nhập chuỗi base64 hoặc chọn file.', 'error');
-  }
-});
-
-// Sự kiện chọn file ảnh
-document.getElementById('fileInput').addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  if (file && file.type.startsWith('image/')) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      document.getElementById('base64Input').value = reader.result;
-      setStatus('', '');
-    };
-    reader.readAsDataURL(file);
+    setStatus('⚠️ Please enter base64 string or select a file.', 'error');
   }
 });
 
 // Load dữ liệu đã lưu khi mở popup
-chrome.storage.local.get(['progressColor', 'scrubberHeight', 'scrubberBase64'], (data) => {
+chrome.storage.local.get(['progressColor', 'scrubberBase64'], (data) => {
   if (data.progressColor) {
     document.getElementById('progressColor').value = data.progressColor;
-  }
-  if (data.scrubberHeight) {
-    heightSlider.value = data.scrubberHeight;
-    heightValue.textContent = data.scrubberHeight;
   }
   if (data.scrubberBase64) {
     document.getElementById('base64Input').value = data.scrubberBase64;
@@ -61,12 +61,12 @@ function setStatus(message, type) {
   else if (type === 'error') statusEl.classList.add('error');
 }
 
-// Sự kiện nút Tải lại trang YouTube
+// Nút tải lại trang YouTube
 document.getElementById('reloadButton').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (tabs.length > 0) {
       chrome.tabs.reload(tabs[0].id);
-      setStatus('🌐 Đã tải lại trang!', 'success');
+      setStatus('🌐 Page reloaded!', 'success');
     }
   });
 });

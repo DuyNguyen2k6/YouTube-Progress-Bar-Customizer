@@ -80,22 +80,25 @@ input[type="range"] {
   color: #202124;
 }
 
+/* Nút với nền trắng viền xanh, chữ xanh */
 button {
   width: 100%;
   padding: 10px 0;
   font-size: 14px;
   font-weight: 600;
-  color: #fff;
-  background-color: #1a73e8;
-  border: none;
+  color: #1a73e8; /* chữ xanh */
+  background-color: #fff; /* nền trắng */
+  border: 2px solid #1a73e8; /* viền xanh */
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
   user-select: none;
 }
 
+/* Hiệu ứng hover: nền xanh, chữ trắng */
 button:hover {
-  background-color: #1669c1;
+  background-color: #1a73e8;
+  color: #fff;
 }
 
 .status {
@@ -109,6 +112,7 @@ button:hover {
 .status.error {
   color: #d93025;
 }
+
 button + button {
   margin-top: 8px;
 }

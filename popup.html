@@ -1,42 +1,57 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Ảnh Scrubber YouTube</title>
+  <title>YouTube Scrubber Image</title>
   <link rel="stylesheet" href="popup.css" />
+  <style>
+    /* Thêm style nhỏ cho nút và text hiển thị tên file */
+    #chooseFileButton {
+      padding: 6px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      border: 1.5px solid #1a73e8;
+      background-color: #fff;
+      color: #1a73e8;
+      border-radius: 4px;
+      user-select: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    #chooseFileButton:hover {
+      background-color: #1a73e8;
+      color: #fff;
+    }
+    #fileName {
+      margin-left: 10px;
+      font-style: italic;
+      color: #555;
+      user-select: none;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h2>Tuỳ chỉnh Scrubber YouTube</h2>
+    <h2>YouTube Scrubber Customizer</h2>
 
-    <label for="fileInput" class="file-label">Chọn ảnh .gif từ máy (hoặc dán base64):</label>
-    <input type="file" id="fileInput" accept="image/gif" />
+    <label class="file-label">Choose a .gif file (or paste base64 below):</label>
+    <button id="chooseFileButton" type="button">Select File</button>
+    <span id="fileName">No file chosen</span>
+    <input type="file" id="fileInput" accept="image/gif" style="display:none;" />
 
     <textarea
       id="base64Input"
-      placeholder="Hoặc nhập chuỗi base64 ảnh ở đây..."
+      placeholder="Or enter base64 image string here..."
       spellcheck="false"
       rows="6"
     ></textarea>
 
-    <label for="progressColor">Màu thanh tiến trình:</label>
+    <label for="progressColor">Progress bar color:</label>
     <input type="color" id="progressColor" />
 
-    <label for="heightSlider">Chiều cao nút scrubber: <span id="heightValue">80</span> px</label>
-    <input
-      type="range"
-      id="heightSlider"
-      min="40"
-      max="120"
-      value="80"
-      step="1"
-    />
+    <button id="saveButton">💾 Save Changes</button>
+    <button id="reloadButton" type="button">🔄 Reload YouTube Page</button>
 
-    <button id="saveButton">💾 Lưu thay đổi</button>
-<button id="reloadButton" type="button">🔄 Tải lại trang YouTube</button>
-
-<p id="status" class="status"></p>
-
+    <p id="status" class="status"></p>
   </div>
 
   <script src="popup.js"></script>
