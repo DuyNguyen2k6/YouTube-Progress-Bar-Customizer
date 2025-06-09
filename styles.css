@@ -1,0 +1,12 @@
+.ytp-scrubber-button.custom-pepe {
+  width: 70px !important;
+  height: 90px !important;
+  border: none !important;
+  margin-left: -20px !important;
+  margin-top: -70px !important;
+  transform: scale(0.8) !important;  
+  background-color: transparent !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ảnh Scrubber YouTube</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Tuỳ chỉnh Scrubber YouTube</h2>
+
+    <label for="fileInput" class="file-label">Chọn ảnh .gif từ máy (hoặc dán base64):</label>
+    <input type="file" id="fileInput" accept="image/gif" />
+
+    <textarea
+      id="base64Input"
+      placeholder="Hoặc nhập chuỗi base64 ảnh ở đây..."
+      spellcheck="false"
+      rows="6"
+    ></textarea>
+
+    <label for="progressColor">Màu thanh tiến trình:</label>
+    <input type="color" id="progressColor" />
+
+    <label for="heightSlider">Chiều cao nút scrubber: <span id="heightValue">80</span> px</label>
+    <input
+      type="range"
+      id="heightSlider"
+      min="40"
+      max="120"
+      value="80"
+      step="1"
+    />
+
+    <button id="saveButton">💾 Lưu thay đổi</button>
+<button id="reloadButton" type="button">🔄 Tải lại trang YouTube</button>
+
+<p id="status" class="status"></p>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
