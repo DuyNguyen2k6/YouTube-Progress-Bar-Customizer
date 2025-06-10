@@ -3,7 +3,7 @@
   "name": "YouTube Progress Bar Customizer",
   "version": "1.1",
   "description": "Customize the progress bar and replace scrubber button with user image",
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["storage", "activeTab"],
   "host_permissions": ["*://www.youtube.com/*"],
   "icons": {
     "128": "icon.png"
