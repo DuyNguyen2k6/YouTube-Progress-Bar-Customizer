@@ -35,6 +35,17 @@
       border: 1px solid #ccc;
       border-radius: 6px;
     }
+    /* Checkbox label style */
+    label[for="noGifCheckbox"], label.checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 13px;
+      user-select: none;
+      cursor: pointer;
+      color: #3c4043;
+    }
   </style>
 </head>
 <body>
@@ -52,6 +63,11 @@
       spellcheck="false"
       rows="6"
     ></textarea>
+
+    <label class="checkbox-label" for="noGifCheckbox">
+      <input type="checkbox" id="noGifCheckbox" />
+      No GIF (use default scrubber)
+    </label>
 
     <img id="previewImage" />
 
