@@ -62,43 +62,144 @@ input[type="color"] {
   height: 28px;
   border: none;
   padding: 0;
-  margin-bottom: 12px;
   cursor: pointer;
   vertical-align: middle;
   border-radius: 4px;
 }
 
-input[type="range"] {
-  width: 100%;
-  margin: 6px 0 12px 0;
-  cursor: pointer;
+/* Nhóm input color + nút Save & Reload nằm ngang */
+.color-buttons-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
 }
 
-#heightValue {
-  font-weight: 600;
-  margin-left: 6px;
-  color: #202124;
-}
-
-/* Nút với nền trắng viền xanh, chữ xanh */
-button {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 14px;
-  font-weight: 600;
-  color: #1a73e8; /* chữ xanh */
-  background-color: #fff; /* nền trắng */
-  border: 2px solid #1a73e8; /* viền xanh */
+/* Nút Save và Reload nhỏ gọn bên cạnh ô chọn màu */
+#saveButton, #reloadButton {
+  padding: 6px 12px;
+  font-size: 12px;
+  width: auto;
+  min-width: unset;
+  height: 28px;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  border: 2px solid #1a73e8;
+  background-color: #fff;
+  color: #1a73e8;
   user-select: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Hiệu ứng hover: nền xanh, chữ trắng */
-button:hover {
+/* Hiệu ứng hover */
+#saveButton:hover, #reloadButton:hover {
   background-color: #1a73e8;
   color: #fff;
+}
+
+.status {
+  margin-top: 12px/* Reset cơ bản */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 13px;
+  margin: 0;
+  padding: 12px 16px;
+  color: #202124;
+  background: #fff;
+  min-width: 280px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0 0 12px 0;
+  color: #202124;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #3c4043;
+}
+
+input[type="file"] {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  resize: vertical;
+  padding: 6px 8px;
+  font-family: monospace;
+  font-size: 12px;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  color: #202124;
+  transition: border-color 0.2s ease;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.3);
+}
+
+input[type="color"] {
+  width: 40px;
+  height: 28px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  vertical-align: middle;
+  border-radius: 4px;
+}
+
+/* Nhóm input color + nút Preview, Save & Reload nằm ngang */
+.color-buttons-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  flex-wrap: nowrap;
+}
+
+.color-buttons-group button {
+  padding: 6px 12px;
+  font-size: 12px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid #1a73e8;
+  background-color: #fff;
+  color: #1a73e8;
+  user-select: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-buttons-group button:hover {
+  background-color: #1a73e8;
+  color: #fff;
+}
+
+/* Bỏ margin-top để các nút nằm cùng hàng */
+button + button {
+  margin-top: 0 !important;
 }
 
 .status {
@@ -115,4 +216,18 @@ button:hover {
 
 button + button {
   margin-top: 8px;
+}
+
+  font-size: 13px;
+  min-height: 20px;
+  text-align: center;
+  color: #188038;
+}
+
+.status.error {
+  color: #d93025;
+}
+
+button + button {
+  margin-top: 0px;
 }

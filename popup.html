@@ -5,7 +5,7 @@
   <title>YouTube Scrubber Image</title>
   <link rel="stylesheet" href="popup.css" />
   <style>
-    /* Thêm style nhỏ cho nút và text hiển thị tên file */
+    /* Style nhỏ cho nút và text hiển thị tên file */
     #chooseFileButton {
       padding: 6px 12px;
       font-size: 13px;
@@ -27,6 +27,14 @@
       color: #555;
       user-select: none;
     }
+    #previewImage {
+      max-width: 150px;
+      max-height: 150px;
+      margin-top: 10px;
+      display: none;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
@@ -45,11 +53,16 @@
       rows="6"
     ></textarea>
 
-    <label for="progressColor">Progress bar color:</label>
-    <input type="color" id="progressColor" />
+    <img id="previewImage" />
 
-    <button id="saveButton">💾 Save Changes</button>
-    <button id="reloadButton" type="button">🔄 Reload YouTube Page</button>
+    <label>Progress bar gradient colors:</label>
+    <div class="color-buttons-group">
+      <input type="color" id="progressColor1" title="Gradient start color" />
+      <input type="color" id="progressColor2" title="Gradient end color" />
+      <button id="previewButton" type="button">Preview</button>
+      <button id="saveButton">Save</button>
+      <button id="reloadButton" type="button">Reload</button>
+    </div>
 
     <p id="status" class="status"></p>
   </div>

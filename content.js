@@ -4,7 +4,6 @@ function applyScrubberImage(scrubber) {
       if (data.scrubberBase64) {
         scrubber.classList.add('custom-pepe');
         scrubber.style.backgroundImage = `url("${data.scrubberBase64}")`;
-        // Đặt chiều cao cố định 80px, không lấy từ storage nữa
         scrubber.style.height = '80px';
       }
     });
@@ -27,20 +26,20 @@ const scrubberInit = document.querySelector('.ytp-scrubber-button');
 applyScrubberImage(scrubberInit);
 observeScrubber();
 
-// Thêm màu thanh tiến trình và hiệu ứng blur nhẹ glow
-chrome.storage.local.get('progressColor', (data) => {
-  const color = data.progressColor;
-  if (color) {
-    const style = document.createElement('style');
-    style.textContent = `
-      .html5-play-progress,
-      .ytp-play-progress,
-      .ytp-clip-start-exclude {
-        background-color: ${color} !important;
-        background-image: none !important;
-        box-shadow: 0 0 8px 3px ${color}66 !important; /* 66 = alpha ~40% */
-      }
-    `;
-    document.head.appendChild(style);
-  }
+chrome.storage.local.get(['progressColor1', 'progressColor2'], (data) => {
+  const color1 = data.progressColor1 || '#FF0000';
+  const color2 = data.progressColor2 || '#00FF00';
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .html5-play-progress,
+    .ytp-play-progress,
+    .ytp-clip-start-exclude {
+      background-image: linear-gradient(90deg, ${color1}, ${color2}) !important;
+      background-color: transparent !important;
+      background-repeat: no-repeat !important;
+      box-shadow: 0 0 8px 3px ${color2}66 !important;
+    }
+  `;
+  document.head.appendChild(style);
 });
